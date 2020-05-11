@@ -21,13 +21,13 @@ public class ReportController {
 
     @GetMapping("report_by_genre/{genre}")
     public String reportByGenre(Model model, @PathVariable String genre){
-        model.addAttribute("books", bookService.listByAuthor(genre));
+        model.addAttribute("books", bookService.listByGenre(genre));
         return "reports/report_by_author";
     }
 
     @GetMapping("report_by_year/{year}")
     public String reportByYear(Model model, @PathVariable String year){
-        model.addAttribute("books", bookService.listByAuthor(year));
+        model.addAttribute("books", bookService.listByYear(year));
         return "reports/report_by_author";
     }
 
