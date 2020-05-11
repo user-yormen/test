@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Book Details</title>
+    </head>
+
+    <body>
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>ISBN</th>
+                <th>Genres</th>
+            </tr>
+            <tbody>
+            <tr th:each="customer, rowStat: ${customers}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${customer.id}">1</td>
+                <td th:text="${customer.name}">Jack</td>
+                <td th:text="${customer.age}">23</td>
+                <td th:text="${customer.address.street}">AVE N</td>
+                <td th:text="${customer.address.postcode}">77587</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </body>
+
+</html>

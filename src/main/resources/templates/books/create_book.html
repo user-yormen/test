@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Add Book</title>
+    </head>
+    <body>
+        <form action="#" th:action="@{/save_book}" th:object="${newbooks}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <label>Title    <input type="text" th:field="*{title}" required/></label>
+
+            <label>Year <input type="text" th:field="*{year}" required/></label>
+
+            <label>Authors <input type="text" th:field="*{authors}" required/></label>
+
+            <label>ISBN<input type="text" th:field="*{isbn}" required/></label>
+
+            <label>Genres<input type="text" th:field="*{genres}" required/></label>
+
+            <input type="submit" value="Save Book">
+        </form>
+
+    </body>
+</html>

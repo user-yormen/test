@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+    <head>
+        <meta charset="UTF-8">
+        <title>Book Search</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+        <!--<form class="example" th:action="@{/search}" th:object="${greeting}" method="get">-->
+        <form class="example" action="#" th:action="@{/search}" method="get" th:object="${searchBook}">
+            <input type="text" placeholder="Title.." th:field="*{title}" required>
+            <input type="text" placeholder="ISBN.." th:field="*{isbn}" required>
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+
+        <table>
+            <tr>
+                <!--<th>Title</th>-->
+                <th>Author</th>
+                <th>Genres</th>
+                <th>Year</th>
+                <!--<th>ISBN</th>-->
+            </tr>
+            <tbody>
+            <tr th:each="book, rowStat: ${books}" th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <!--<td th:text="${book.id}">1</td>-->
+                <!--<td th:text="${book.title}">Jack</td>-->
+                <td th:text="${book.authors}"></td>
+                <td th:text="${book.genres}"></td>
+                <td th:text="${book.year}"></td>
+                <!--<td th:text="${book.isbn}">77587</td>-->
+            </tr>
+            </tbody>
+        </table>
+        <div class="form-group col-md-11 pagination-centered">
+            <div class="pagination-div">
+                <!--This will show the previous only if you move from 1-->
+                <span th:if="${books.hasPrevious()}">
+                                <a th:href="@{/(page=${books.number-1},size=${actors.size})}">Previous</a>
+                            </span>
+
+                <th:block th:each="i: ${#numbers.sequence(0, books.totalPages - 1)}">
+                    <span th:if="${books.number == i}" class="selected btn btn-danger">[[${i}+1]]</span>
+                </th:block>
+                <!--The Next will disappear when there is nothing left-->
+                <span th:if="${books.hasNext()}">
+                                <a th:href="@{/(page=${books.number+1},size=${books.size})}">Next</a>
+                            </span>
+            </div>
+        </div>
+    </body>
+</html>
